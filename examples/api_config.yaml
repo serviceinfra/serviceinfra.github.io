@@ -1,0 +1,32 @@
+type: google.api.Service
+config_version: 3
+
+#
+# Name of the service configuration.
+#
+name: stores.endpoints.bobadojo.cloud.goog
+
+#
+# API title to appear in the user interface (Google Cloud Console).
+#
+title: Boba Dojo Stores API
+apis:
+- name: bobadojo.stores.v1.Stores
+
+#
+# API usage restrictions.
+#
+usage:
+  rules:
+  # ListStores methods can be called without an API Key.
+  - selector: bobadojo.stores.v1.Stores.ListStores
+    allow_unregistered_calls: true
+  - selector: bobadojo.stores.v1.Stores.GetStore
+    allow_unregistered_calls: false
+  - selector: bobadojo.stores.v1.Stores.FindStores
+    allow_unregistered_calls: false
+
+endpoints:
+- name: stores.endpoints.bobadojo.cloud.goog
+  target: "172.125.77.209"
+

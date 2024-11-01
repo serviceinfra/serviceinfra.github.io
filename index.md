@@ -3,9 +3,9 @@ layout: home
 ---
 This website describes a powerful way to manage APIs that is inexpensive and high-performing. But unfortunately, up-to-now, it hasn't been particularly easy to use.
 
-We fix that here with explanations and tools. Not only is this approach surprisingly easy, it excels at supporting APIs that are built with gRPC and Protocol Buffers.
+We provide explanations and tools here to fix that. Not only is this approach surprisingly easy, it excels at supporting APIs that are built with gRPC and Protocol Buffers.
 
-Our discussion starts with a review of [API Management](/api-management) and an aside discussing what's special about [gRPC API Management](/grpc-api-management).
+This discussion starts with a review of [API Management](/api-management) and an aside discussing what's special about [gRPC API Management](/grpc-api-management).
 
 Then we look at Google's [Service Infrastructure](/service-infrastructure) and the [Extensible Service Proxies](/extensible-service-proxies). These are the key parts of our API management solution.
 
