@@ -1,10 +1,15 @@
 ---
 layout: home
 ---
-This is an expanded discussion of [Managing gRPC APIs with Service Infrastructure and Envoy](https://timburks.me/2024/10/28/managing-grpc-apis).
+This website describes a powerful way to manage APIs that is inexpensive and high-performing. But unfortunately, up-to-now, it hasn't been particularly easy to use.
 
-It starts with a review of [API Management](/api-management) and an aside discussing what's special about [gRPC API Management](/grpc-api-management).
+We fix that here with explanations and tools. Not only is this approach surprisingly easy, it excels at supporting APIs that are built with gRPC and Protocol Buffers.
 
-Then we look at Google's [Service Infrastructure](/service-infrastructure) and the [Extensible Service Proxies](/extensible-service-proxies).
+Our discussion starts with a review of [API Management](/api-management) and an aside discussing what's special about [gRPC API Management](/grpc-api-management).
 
-[The q Tool](/the-q-tool) helps us configure and demonstrate Service Infrastructure-based API management.
+Then we look at Google's [Service Infrastructure](/service-infrastructure) and the [Extensible Service Proxies](/extensible-service-proxies). These are the key parts of our API management solution.
+
+As we look at them, we also see a few gaps. One way that we fill those gaps is with [q](/the-q-tool), a command-line tool that helps us configure and demonstrate Service Infrastructure-based API management.
+
+Thanks for joining us, and please post any feedback to
+[our issues page](https://github.com/serviceinfra/serviceinfra.github.io/issues).
