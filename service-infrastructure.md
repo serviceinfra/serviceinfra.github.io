@@ -2,7 +2,7 @@
 layout: page
 title: Service Infrastructure
 ---
-Service Infrastructure is Google's ["foundational platform for creating, managing, securing, and consuming APIs and services across organizations."](https://cloud.google.com/service-infrastructure/docs/overview)
+[Service Infrastructure](https://cloud.google.com/service-infrastructure/docs/overview) is described as Google's "foundational platform for creating, managing, securing, and consuming APIs and services across organizations."
 
 Capabilities provided by Service Infrastructure include:
 * authentication and authorization
@@ -19,6 +19,6 @@ Service Infrastructure is built on five public Google APIs.
 4. The [Cloud Logging](/cloud-logging) API allows applications to read logs describing API traffic.
 5. The [Cloud Monitoring](/cloud-monitoring) API allows applications to read metrics describing API traffic.
 
-A sixth API, [Service Usage](/service-usage), is used to control access to Google APIs within Google Cloud projects, and is used to obtain access to the other APIs listed above.
+A sixth API, [Service Usage](/service-usage), is used to control access to Google APIs within Google Cloud projects, and is used to enable the other APIs listed above.
 
 In 2016, Google released the [Cloud Endpoints](/cloud-endpoints) API management product, which uses Service Infrastructure to manage APIs on Google Cloud and external platforms.
