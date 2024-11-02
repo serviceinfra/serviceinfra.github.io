@@ -8,12 +8,12 @@ on Google Cloud Run.
 
 This assumes that you have a Google Cloud account with a project
 created and access to the Google Cloud Shell. You don't have to
-start with a fresh project, but that would be a good way to keep
-everything associated with your demo in one easy-to-find place.
+start with a fresh project, but we recommend it! It's a good way
+to keep everything associated with your demo in one easy-to-find place.
 
-After opening Google Cloud Shell, install `q` with:
+## Install and get set up with q.
 
-`go install github.com/agentio/q@latest`
+After opening Google Cloud Shell, install `q` with `go install github.com/agentio/q@latest`
 
 When that finishes, run `q` with no arguments.
 
@@ -80,10 +80,13 @@ token = ya29.[REDACTED]
 Everything looks good!
 ```
 
+## Prepare and run the demo instance.
+
 Next run `q demo`. This generates a directory of
 files that you'll use to set up your service.
-They will be customized to your `gcloud` project
-and run region, so you won't need to edit them.
+They will be customized to the project and run region
+that you configured for `gcloud`, so you won't need
+to edit any of these files.
 
 ```
 $ q demo
@@ -93,7 +96,17 @@ To run the demo, see the SETUP.sh script in stores-demo
 Go inside the generated directory and look around.
 ```
 $ cd stores-demo
+$ ls
+api_config.yaml  CHECK.sh  descriptor.pb  iam.yaml  service.yaml  SETUP.sh
 ```
+
+You might recognize some of these files. Here's a description of everything:
+- `api_config.yaml` contains a snippet of Service Configuration used to define your demo service.
+- `CHECK.sh` can be optionally used to verify access to your Cloud Run service once it's set up.
+- `descriptor.pb` is the file descriptor set describing your demo service.
+- `iam.yaml` contains IAM configuration used to set up your Cloud Run service.
+- `service.yaml` describes the demo service that you will set up on Cloud Run.
+- `SETUP.sh` does everything to set up and run your demo service.
 
 Run the `SETUP.sh` script to configure your project and create your instance.
 ```
@@ -187,8 +200,27 @@ etag: BwYlonNoIzE=
 version: 1
 ```
 
-Now go to the Cloud Run section of the Google Cloud Console, select your service, and find the service URL.
-Click on that to call your service from your browser. You'll get a response like this:
+A lot just happened! Here's a summary:
+1. Three calls to `gcloud services enable` to turn on three important Google APIs used by the demo.
+2. `gcloud endpoints services deploy` uploaded a description of your demo service to Service Management.
+3. `gcloud iam service-accounts create` created a service account that is used by your demo service.
+4. Two calls to `gcloud projects add-iam-policy-binding` gave necessary permissions to the service account.
+5. `gcloud run services replace` used the configuration in `service.yaml` to create your demo service on Cloud Run. We use "replace" to allow this to be called again to upload modified `service.yaml` files with alternate configurations.
+6. `gcloud run services set-iam-policy` removes a restriction on your Cloud Run service and opens it to public access. We don't need this protection because we are protecting the service with a proxy (look inside `service.yaml` for a sneak peek at this).
+
+## Call your demo API.
+
+Now go to the Cloud Run section of the Google Cloud Console. You'll see a list of services, and if you started with a fresh project, there will be just one, like in the screenshot below:
+
+![alt text](/screenshots/cloud-run-services.png)
+
+Click on the name of your service to open a detail view like the one below.
+
+![alt text](/screenshots/cloud-run-service-detail.png)
+
+Near the center, you'll see a highighted URL for your service.
+Click on that to call your service from your browser. 
+You'll get a response like this:
 
 ```
 {"code":404,"message":"The current request is not defined by this API."}
@@ -242,3 +274,33 @@ You can also get the key to use at the command line with `gcloud` and `jq`:
 ```
 $ KEY=$(gcloud services api-keys get-key-string projects/YOUR_PROJECT/locations/global/keys/demo --format json | jq .keyString -r)
 ```
+
+## View your service in the Endpoints console.
+
+Now find the Endpoints link in the Cloud Console sidebar (on the left) and select it.
+You'll find a list of services like the one below.
+
+![alt text](/screenshots/endpoints-services.png)
+
+Select your service by clicking on either the service title or the service name.
+You'll open a detail screen that is something like this:
+
+![alt text](/screenshots/endpoints-service-detail.png)
+
+For the screenshot above, we've selected to display only the Requests graph
+so that we can see the log of operations on the bottom. The graph and logs
+above show a lot more traffic than you should expect (for this instance,
+a cron job is making a batch of API calls every five minutes). But if you
+select "View logs" on a row corresponding to one of the methods you've called,
+you'll find logs of your requests in the Logs Explorer view.
+
+![alt test](/screenshots/endpoints-log-getstore.png)
+
+Click on the '>' on the left of one of the log entries to expand it.
+If you expand all the subsections, you'll find a lot of detail!
+You'll also notice that if you are looking at the log of a call that
+used an API key, the key is included in the log! It's blacked out in
+the screenshot below, you'll want to be careful what you do with these
+logs (we'll work on this problem later).
+
+![alt test](/screenshots/endpoints-log-getstore-detail.png)

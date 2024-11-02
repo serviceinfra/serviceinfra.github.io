@@ -10,6 +10,8 @@ This discussion starts with a review of [API Management](/api-management) and an
 Then we look at Google's [Service Infrastructure](/service-infrastructure) and the [Extensible Service Proxies](/extensible-service-proxies). These are the key parts of our API management solution.
 
 As we look at them, we also see a few gaps. One way that we fill those gaps is with [q](/the-q-tool), a command-line tool that helps us configure and demonstrate Service Infrastructure-based API management.
+[q](/the-q-tool) supports a [quickstart](/quickstart) that Google Cloud users can use to quickly get a sample managed
+service running on Cloud Run. Try it!
 
 Thanks for joining us, and please post any feedback to
 [our issues page](https://github.com/serviceinfra/serviceinfra.github.io/issues).
