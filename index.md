@@ -1,7 +1,7 @@
 ---
 layout: home
 ---
-This website describes a powerful way to manage APIs that is inexpensive and high-performing. But unfortunately, up-to-now, it hasn't been particularly easy to use.
+This website describes a powerful way to manage APIs that is inexpensive and high-performing. But up to now, unfortunately, it hasn't been particularly easy to use.
 
 We provide explanations and tools here to fix that. Not only is this approach surprisingly easy, it excels at supporting APIs that are built with gRPC and Protocol Buffers.
 
